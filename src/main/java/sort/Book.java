@@ -1,5 +1,6 @@
 package sort;
 
+
 import java.util.Objects;
 
 public class Book implements Comparable<Book>, BookType {
@@ -15,6 +16,11 @@ public class Book implements Comparable<Book>, BookType {
         this.authorName = authorName;
         this.title = title;
         this.numOfPages = numOfPages;
+    }
+
+    @MyAnnotation(authorName="myAnnotation")
+    public String returnName() {
+        return this.authorName + " is the author's name";
     }
 
     public String getAuthorName() {

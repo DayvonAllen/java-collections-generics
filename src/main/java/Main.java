@@ -1,14 +1,14 @@
 import generics.ComparableStore;
-import sort.Book;
-import sort.BookComparator;
-import sort.BookType;
-import sort.OldBook;
+import sort.*;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         ComparableStore<String> store1 = new ComparableStore<>();
         store1.setStore1("My Store");
         System.out.println(store1.getStore1());
@@ -183,6 +183,53 @@ public class Main {
 
         checkClass(book);
         checkClass(oldBook);
+
+        System.out.println("==========================================");
+
+        // get the package name of a class using reflection
+        System.out.println(Book.class.getPackage());
+        System.out.println("==========================================");
+
+        // get the fields of a class using reflection
+        // doesn't work on private or protected variables(should be public)
+        System.out.println(Arrays.toString(Book.class.getFields()));
+
+        // this gets all fields including private
+        System.out.println(Arrays.toString(Book.class.getDeclaredFields()));
+
+        System.out.println("==========================================");
+
+        // get the methods of a class using reflection
+        // doesn't work on private or protected methods(should be public)
+        System.out.println(Arrays.toString(Book.class.getMethods()));
+
+        // this gets all methods including private
+        System.out.println(Arrays.toString(Book.class.getDeclaredMethods()));
+
+
+        // this is how we can instantiate a class under the hood with the help of reflection
+        // we will get the constructor for the book class
+        // most popular frameworks do this under the hood(spring, hibernate, junit)
+        Constructor<Book> constructor = Book.class.getDeclaredConstructor();
+
+        // instantiate a new instance of a class
+        // can access private constructors by setting accessible to true
+        // You should use ENUMS for singletons because of the fact private class constructors can be used to accessed using reflections
+        constructor.setAccessible(true);
+        Book reflectBook = constructor.newInstance();
+
+        System.out.println(reflectBook);
+        System.out.println(Arrays.toString(Book.class.getInterfaces()));
+
+        System.out.println("==========================================");
+
+        Method[] methods = Book.class.getMethods();
+
+        for(Method m: methods) {
+            if(m.isAnnotationPresent(MyAnnotation.class)) {
+                System.out.println(m.getName());
+            }
+        }
     }
 
     // 3rd approach(can use when you don't know the class you are looking for, uses polymorphism)
