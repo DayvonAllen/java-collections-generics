@@ -95,7 +95,6 @@ public class Main {
 
         System.out.println(books);
 
-
         BookComparator bookC1 = new BookComparator("Beck", "new_title", 90);
         BookComparator bookC2 = new BookComparator("Alan", "my_title", 50);
         BookComparator bookC = new BookComparator("John", "title", 120);
@@ -112,6 +111,45 @@ public class Main {
         bookComparators.sort(Comparator.comparingInt(BookComparator::getNumOfPages).thenComparing(BookComparator::getAuthorName).reversed());
 
         System.out.println(bookComparators);
+
+        List<String> uList = new ArrayList<>(Arrays.asList("john", "beth", "alan"));
+
+        // now this list cannot no longer be modified
+        uList = Collections.unmodifiableList(uList);
+
+        // synchronized collections method(thread safe)
+
+        // add() and remove() method become synchronized when we use Collections.synchronizedList()
+        // intrinsic lock - not that efficient because threads have to wait for each other even when tey want to
+        // execute independent methods and operations
+        // use concurrent collections instead
+        List<Integer> my_nums = Collections.synchronizedList(new ArrayList<>());
+
+        System.out.println("==========================================");
+
+        Thread t1 = new Thread(() -> {
+            for(int i = 0; i < 1000; i++) {
+                my_nums.add(i);
+            }
+        });
+
+        Thread t2 = new Thread(() -> {
+            for(int i = 0; i < 1000; i++) {
+                my_nums.add(i);
+            }
+        });
+
+        t1.start();
+        t2.start();
+
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Array Size: " + my_nums.size());
 
     }
 }
