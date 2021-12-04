@@ -21,4 +21,10 @@ Think of ADT as a black box which hides the inner structure and design of the da
   - has a LIFO(Last In First Out) structure, the last item we inserted is the first item taken out. 
   - Basic operations are `push()`(push a value to the top of the stack), `pop()`(return and remove the value at the top of the stack), `peek()`(returns the value at the top of the stack)
   - it can be implemented with arrays or with linked lists
+  - Stack Big O:
+    - Push - O(1) 
+    - Pop - O(1)
+    - Peek - O(1)
+    - Contains- O(n)
+- `Associative Array` 
 ---

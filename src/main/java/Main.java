@@ -1,20 +1,13 @@
 import generics.ComparableStore;
-import generics.Store;
 
 import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        Store<String> store = new Store<>();
-        store.setItem("My Store");
-//        System.out.println(store.getItem());
         ComparableStore<String> store1 = new ComparableStore<>();
         store1.setStore1("My Store");
-//        System.out.println(store1.getStore1());
-        ComparableStore<String> store2 = new ComparableStore<>();
-        store2.setStore2("My Store");
-//        System.out.println(store2.getStore2());
+        System.out.println(store1.getStore1());
 
         // lower bounded wildcards
         List<? super Integer> l1 = new ArrayList<Integer>();
@@ -43,12 +36,21 @@ public class Main {
             System.out.println(myInt);
         }
 
+        // do not use over Deque<T> var = new ArrayDeque()
+        // Stack is slower because it is synchronized.
         Stack<String> stringStack = new Stack<>();
         ArrayList<String> stringArrayList = new ArrayList<>();
         LinkedList<String> stringLinkedList = new LinkedList<>();
 
-        // can use ArrayDeque or LinkedList to implement Queue Interface
+        // can use ArrayDeque(more common, double ended queue) or LinkedList to implement Queue Interface
+        // Queues that are implemented using an ArrayDeque is faster than queues implemented using LinkedList
         Queue<String> stringQueue = new ArrayDeque<>();
         Queue<String> linkedQueue = new LinkedList<>();
+
+        // should use this for stacks, it is fast.
+        // is not synchronized, so it is faster than Stack.
+        Deque<String> stringDeque = new ArrayDeque<>();
+
+        PriorityQueue<String> stringPriorityQueue = new PriorityQueue<>();
     }
 }
