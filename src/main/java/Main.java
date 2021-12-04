@@ -1,4 +1,6 @@
 import generics.ComparableStore;
+import sort.Book;
+import sort.BookComparator;
 
 import java.util.*;
 
@@ -76,5 +78,40 @@ public class Main {
         nums.sort(Collections.reverseOrder());
 
         System.out.println(nums);
+
+        System.out.println("==========================================");
+
+        Book book1 = new Book("Beck", "new_title", 90);
+        Book book2 = new Book("Alan", "my_title", 50);
+        Book book = new Book("John", "title", 120);
+
+        List<Book> books = new ArrayList<>(Arrays.asList(book1, book2, book));
+
+        System.out.println(books);
+
+        System.out.println("==========================================");
+
+        Collections.sort(books);
+
+        System.out.println(books);
+
+
+        BookComparator bookC1 = new BookComparator("Beck", "new_title", 90);
+        BookComparator bookC2 = new BookComparator("Alan", "my_title", 50);
+        BookComparator bookC = new BookComparator("John", "title", 120);
+
+        List<BookComparator> bookComparators = new ArrayList<>(Arrays.asList(bookC1, bookC2, bookC));
+
+        System.out.println("==========================================");
+        System.out.println(bookComparators);
+
+        System.out.println("==========================================");
+        // bookComparators.sort((my_book1, my_book2) -> Integer.compare(my_book1.getNumOfPages(), my_book2.getNumOfPages()));
+        // bookComparators.sort(Comparator.comparingInt(BookComparator::getNumOfPages).reversed());
+        // compare num of pages, if equal compare the author name then reverse the list
+        bookComparators.sort(Comparator.comparingInt(BookComparator::getNumOfPages).thenComparing(BookComparator::getAuthorName).reversed());
+
+        System.out.println(bookComparators);
+
     }
 }
