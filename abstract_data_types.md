@@ -27,4 +27,5 @@ Think of ADT as a black box which hides the inner structure and design of the da
     - Peek - O(1)
     - Contains- O(n)
 - `Associative Array` 
+- `Set`
 ---
