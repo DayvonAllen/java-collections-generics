@@ -52,5 +52,29 @@ public class Main {
         Deque<String> stringDeque = new ArrayDeque<>();
 
         PriorityQueue<String> stringPriorityQueue = new PriorityQueue<>();
+
+        // sort(uses quick sort)
+        int[] sortedArr  = new int[]{10, 2, 3, 4, 5, 100, 234, 48};
+        Arrays.sort(sortedArr);
+
+        System.out.println("==========================================");
+        for(int num : sortedArr) {
+            System.out.println(num);
+        }
+
+        System.out.println("==========================================");
+
+        List<Integer> nums = Arrays.asList(10,239, 1,5,212);
+
+        // sorts in asc order
+        Collections.sort(nums);
+        System.out.println(nums);
+
+        System.out.println("==========================================");
+
+        // sorts in desc order
+        nums.sort(Collections.reverseOrder());
+
+        System.out.println(nums);
     }
 }
