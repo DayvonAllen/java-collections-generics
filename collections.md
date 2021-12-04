@@ -2,4 +2,33 @@
 - The Java collections' framework is a set of classes and interfaces that implement commonly reusable collection data structures.
 - ex. List, Queue, Map
 - We do not have to implement every algorithm and data structure from scratch, these collections have been tested.
+- Almost all the collections(except map) can be derived from `java.util.Collection` interface
+- the `toArray()` method can transform any `Collection` into a one-dimensional array.
+- the `Collection` interface extends the `java.lang.iterable` interface(therefore we can use them in a for loop)
+- Hierarchy:
+  - Iterable(Interface)
+    - Collection(Interface)
+      - List(Interface)
+        - ArrayList(Class)
+        - LinkedList(Class)
+        - Vector(Class)
+      - Queue(Interface)
+        - PriorityQueue(Class)
+        - Deque(Interface)
+          - ArrayDeque(Class)
+      - Set(Interface)
+        - HashSet(Class)
+        - SortedSet(Interface)
+          - TreeSet(Class)
+        - LinkedHashSet(Class)
+---
+
+## Map
+- Hierarchy:
+  - Map(Interface)
+    - HashTable(Class)
+    - HashMap(Class)
+    - LinkedHashMap(Class)
+    - SortedMap(Interface)
+      - TreeMap(Class)
 ---

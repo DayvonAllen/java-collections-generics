@@ -1,9 +1,7 @@
 import generics.ComparableStore;
 import generics.Store;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Main {
 
@@ -44,5 +42,13 @@ public class Main {
         for(Integer myInt :  myUBW1) {
             System.out.println(myInt);
         }
+
+        Stack<String> stringStack = new Stack<>();
+        ArrayList<String> stringArrayList = new ArrayList<>();
+        LinkedList<String> stringLinkedList = new LinkedList<>();
+
+        // can use ArrayDeque or LinkedList to implement Queue Interface
+        Queue<String> stringQueue = new ArrayDeque<>();
+        Queue<String> linkedQueue = new LinkedList<>();
     }
 }
