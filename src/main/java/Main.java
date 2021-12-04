@@ -1,6 +1,8 @@
 import generics.ComparableStore;
 import sort.Book;
 import sort.BookComparator;
+import sort.BookType;
+import sort.OldBook;
 
 import java.util.*;
 
@@ -151,5 +153,44 @@ public class Main {
 
         System.out.println("Array Size: " + my_nums.size());
 
+        System.out.println("==========================================");
+
+        // Reflection examples
+
+        // 1st approach to acquire class(can use when you know the class you are looking for)
+        Class<Book> b = Book.class;
+
+        // get package name and class name
+        System.out.println(b.getName());
+
+        System.out.println("==========================================");
+
+        // 2nd approach to acquire class(can use when you know the class you are looking for)
+        Class bookClass = null;
+
+        try {
+            // approach used heavily by frameworks,
+            // argument is package name and class name
+            bookClass = Class.forName("sort.Book");
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(bookClass);
+
+        OldBook oldBook = new OldBook("Alan", "my_title", 50);
+
+        checkClass(book);
+        checkClass(oldBook);
+    }
+
+    // 3rd approach(can use when you don't know the class you are looking for, uses polymorphism)
+    // get class name at run time
+    public static void checkClass(BookType book) {
+        System.out.println("==========================================");
+
+        Class b =  book.getClass();
+       System.out.println(b.getName());
     }
 }
